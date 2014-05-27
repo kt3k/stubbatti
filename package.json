@@ -1,0 +1,25 @@
+{
+  "name": "stubbatti",
+  "version": "0.0.0",
+  "description": "stub http server",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kt3k/stubbatti.git"
+  },
+  "keywords": [
+    "stub",
+    "http",
+    "server",
+    "mock"
+  ],
+  "author": "Yoshiya Hinosawa <stibium121@gmail.com> (https://twitter.com/kt3k)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kt3k/stubbatti/issues"
+  },
+  "homepage": "https://github.com/kt3k/stubbatti"
+}
