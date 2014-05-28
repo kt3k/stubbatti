@@ -17,10 +17,78 @@ Stubbatti is configurable with the file named `.stubbatti.js` or `stubbatti.js`.
 And in it you can write like following:
 
 ```
-get('/abc', 'hello world');
+get('/hello', 'Hello, world!');
 ```
 
-And if you run the command `stubbatti` then stubbatti server will start listening on port 28987 (for default) and will serve the string `hello world` when the path `/abc` requested.
+And if you run the command `stubbatti` then stubbatti server will start listening on port 28987 (for default) and will serve the string `Hello, world!` when the path `/hello` requested.
+
+# Reference
+
+## `.stubbatti.js`
+
+**delay**
+
+```
+get('/slow', 'slow response', {delay: 3000});
+```
+
+With the above, `/slow` responses `slow response` after the delay of 3000 miliseconds.
+
+This is useful for testing timeout features of client libraries.
+
+**contentType**
+
+```
+get('/json', '{"a":1}', {contentType: 'application/json'});
+```
+
+With the above, `/json` responses `{"a":1}` with `Content-Type: application/json`.
+
+**Custom Headers**
+
+```
+get('/custom', '{"a":1}', {headers: {
+    'X-Custom': 'abc',
+    'X-Header': 'def'
+}});
+```
+
+`/custom` responses with the HTTP headers like:
+
+```
+X-Custom: abc
+X-Header: def
+```
+
+**Other Methods**
+
+Available methods are `get`, `post`, `head`, `options`, `put`, `delete`.
+
+Followings are valid notations in `.stubbatti.js`.
+
+```
+get('/foo', '3');
+post('/bar', '6');
+head('/baz', '15');
+options('/spam', '21');
+put('/ham', '28');
+delete('/egg', '36');
+```
+
+
+## Utility
+
+Requesting (GET) `/__kill` kills the stub server. This is usable like the below:
+
+```sh
+stubbatti & # launch a stub server
+
+# run unit test using the stub http server
+...
+
+curl 0.0.0.0:28987/__kill # kill the stub server
+```
+
 
 # LICENSE
 
