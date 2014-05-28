@@ -85,6 +85,13 @@ port(80);
 
 The default port number of stubbatti is 28987.
 
+## Command Line Options
+
+With `--config` option, you can specify custom stubbatti file.
+
+```bash
+stubbatti --config my_stub_settings.js
+```
 
 
 ## Utility
