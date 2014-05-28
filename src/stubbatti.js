@@ -67,7 +67,14 @@ stubbattiPt.register = function (method, path, options) {
 stubbattiPt.start = function () {
 
     var server = this.server = this.app.listen(this.port, function () {
-        console.log('listening on %s:%s', server.address().address, server.address().port);
+        console.log('The stub server is listening on %s:%s', server.address().address, server.address().port);
+    });
+
+    // set timeout of 0.5 sec to each connection
+    server.on('connection', function (socket) {
+
+        socket.setTimeout(500);
+
     });
 
 };
@@ -84,11 +91,15 @@ stubbattiPt.stop = function () {
         return;
     }
 
-    this.server.close();
+    var self = this;
 
-    this.server = null;
+    this.server.close(function () {
 
-    console.log('The stub server has been stopped.');
+        self.server = null;
+
+        console.log('The stub server has been stopped.');
+
+    });
 };
 
 
