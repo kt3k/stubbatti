@@ -6,7 +6,7 @@
 
 Using `npm`, install `stubbatti` command globally:
 
-```
+```bash
 npm install -g stubbatti
 ```
 
@@ -16,7 +16,7 @@ Stubbatti is configurable with the file named `.stubbatti.js` or `stubbatti.js`.
 
 And in it you can write like following:
 
-```
+```js
 get('/hello', 'Hello, world!');
 ```
 
@@ -28,7 +28,7 @@ And if you run the command `stubbatti` then stubbatti server will start listenin
 
 **delay**
 
-```
+```js
 get('/slow', 'slow response', {delay: 3000});
 ```
 
@@ -38,7 +38,7 @@ This is useful for testing timeout features of client libraries.
 
 **contentType**
 
-```
+```js
 get('/json', '{"a":1}', {contentType: 'application/json'});
 ```
 
@@ -46,7 +46,7 @@ With the above, `/json` responses `{"a":1}` with `Content-Type: application/json
 
 **Custom Headers**
 
-```
+```js
 get('/custom', '{"a":1}', {headers: {
     'X-Custom': 'abc',
     'X-Header': 'def'
@@ -66,7 +66,7 @@ Available methods are `get`, `post`, `head`, `options`, `put`, `delete`.
 
 Followings are valid notations in `.stubbatti.js`.
 
-```
+```js
 get('/foo', '3');
 post('/bar', '6');
 head('/baz', '15');
@@ -80,7 +80,7 @@ delete('/egg', '36');
 
 Requesting (GET) `/__kill` kills the stub server. This is usable like the below:
 
-```sh
+```bash
 stubbatti & # launch a stub server
 
 # run unit test using the stub http server
