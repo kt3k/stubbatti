@@ -17,6 +17,19 @@ Stubbatti.methods.forEach(function (method) {
 });
 
 
+/**
+ * ```
+ * port(12345);
+ * ```
+ * Sets the stub server's port.
+ */
+global[port] = function (port) {
+
+    stubServer.setPort(port);
+
+};
+
+
 // set up liftoff params
 
 var cli = new Liftoff({

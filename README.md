@@ -66,6 +66,7 @@ Available methods are `get`, `post`, `head`, `options`, `put`, `delete`.
 
 Followings are valid notations in `.stubbatti.js`.
 
+
 ```js
 get('/foo', '3');
 post('/bar', '6');
@@ -74,6 +75,16 @@ options('/spam', '21');
 put('/ham', '28');
 delete('/egg', '36');
 ```
+
+**Setting port**
+
+You can set the stub server's port number with port method:
+```
+port(80);
+```
+
+The default port number of stubbatti is 28987.
+
 
 
 ## Utility
