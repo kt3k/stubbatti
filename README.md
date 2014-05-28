@@ -12,7 +12,7 @@ npm install -g stubbatti
 
 # Usage
 
-Stubbatti is configured by the file named `.stubbatti.js` or `stubbatti.js`.
+Stubbatti is configurable with the file named `.stubbatti.js` or `stubbatti.js`.
 
 And in it you can write like following:
 
