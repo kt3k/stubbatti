@@ -26,6 +26,16 @@ And if you run the command `stubbatti` then stubbatti server will start listenin
 
 ## `.stubbatti.js` reference
 
+**Basic Response**
+
+You can set a response body for the path:
+
+```js
+get('/hello', 'Hello, world!');
+```
+
+With the above, `/hello` responses `Hello, world!` with http status `200`.
+
 **Response delay**
 
 You can delay response with `delay` option:
@@ -34,7 +44,7 @@ You can delay response with `delay` option:
 get('/slow', 'slow response', {delay: 3000});
 ```
 
-With the above, /slow responses after the delay of 3000 miliseconds.
+With the above, `/slow` responses after the delay of 3000 miliseconds.
 
 This is useful for testing timeout features of client libraries.
 
