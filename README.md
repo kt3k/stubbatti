@@ -1,4 +1,4 @@
-# Stubbatti v0.1.0
+# Stubbatti v0.2.0
 
 > stub http server, configurable by stubbatti DSL (WIP)
 
