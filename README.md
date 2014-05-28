@@ -88,7 +88,7 @@ post('/bar', '6');
 head('/baz', '15');
 options('/spam', '21');
 put('/ham', '28');
-delete('/egg', '36');
+global.delete('/egg', '36');
 ```
 
 **Setting port**
