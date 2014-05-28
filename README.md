@@ -4,7 +4,7 @@
 
 # Install
 
-Using `npm`, install cli globally:
+Using `npm`, install `stubbatti` command globally:
 
 ```
 npm install -g stubbatti
@@ -20,7 +20,7 @@ And in it you can write like following:
 get('/abc', 'hello world');
 ```
 
-And if you run the command `stubbatti` then stubbatti server starts listening on port 28987 (for default) and will serve the string `hello world` when the path `/abc` requested.
+And if you run the command `stubbatti` then stubbatti server will start listening on port 28987 (for default) and will serve the string `hello world` when the path `/abc` requested.
 
 # LICENSE
 
