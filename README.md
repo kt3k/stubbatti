@@ -25,3 +25,7 @@ And if you run the command `stubbatti` then stubbatti server starts listening on
 # LICENSE
 
 MIT
+
+# Note
+
+This command is a thin wrapper of `express` and focusing on stubbing an http server on test environments. This cli should be useful when you write the unit test of an http client or a web api client.
