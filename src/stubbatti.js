@@ -44,15 +44,10 @@ var stubbattiPt = Stubbatti.prototype;
  */
 stubbattiPt.register = function (method, path, body, options) {
 
-    // cast string `options`
-    if (typeof options === 'string') {
-        options = {body: options};
-    }
-
     // register method and path
     this.app[method](path, function (req, res) {
 
-        res.send(options.body);
+        res.send(body);
         res.end();
 
     });
