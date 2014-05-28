@@ -23,7 +23,7 @@ var Stubbatti = function () {
             stubbatti.stop();
         });
     });
-}
+};
 
 
 // available methods

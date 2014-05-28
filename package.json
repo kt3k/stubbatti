@@ -4,7 +4,7 @@
   "description": "stub http server",
   "main": "index.js",
   "bin": {
-      "stubbatti": "./bin/stubbatti"
+    "stubbatti": "./bin/stubbatti"
   },
   "scripts": {
     "test": "gulp"
@@ -30,6 +30,7 @@
     "liftoff": "~0.10.0"
   },
   "devDependencies": {
-    "gulp": "~3.6.2"
+    "gulp": "~3.6.2",
+    "gulp-jshint": "~1.6.1"
   }
 }
