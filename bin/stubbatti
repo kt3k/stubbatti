@@ -23,7 +23,7 @@ Stubbatti.methods.forEach(function (method) {
  * ```
  * Sets the stub server's port.
  */
-global[port] = function (port) {
+global['port'] = function (port) {
 
     stubServer.setPort(port);
 
