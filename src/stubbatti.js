@@ -12,6 +12,17 @@ var DEFAULT_STUBBATTI_PORT = 28987;
 var Stubbatti = function () {
     this.port = DEFAULT_STUBBATTI_PORT;
     this.app = express();
+
+    var stubbatti = this;
+
+    this.app.get('/__kill', function (req, res) {
+        res.send('The stub server has been killed.\n');
+        res.end();
+
+        setTimeout(function () {
+            stubbatti.stop();
+        });
+    });
 }
 
 
@@ -55,10 +66,29 @@ stubbattiPt.register = function (method, path, options) {
  */
 stubbattiPt.start = function () {
 
-    var server = this.app.listen(this.port, function () {
+    var server = this.server = this.app.listen(this.port, function () {
         console.log('listening on %s:%s', server.address().address, server.address().port);
     });
 
+};
+
+
+/**
+ * Stop the server.
+ *
+ * @return {void}
+ */
+stubbattiPt.stop = function () {
+
+    if (this.server == null) {
+        return;
+    }
+
+    this.server.close();
+
+    this.server = null;
+
+    console.log('The stub server has been stopped.');
 };
 
 
