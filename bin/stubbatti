@@ -49,6 +49,8 @@ var cli = new Liftoff({
 // exec
 
 cli.launch(function (env) {
+    console.log('Stubbatti server version %s.', Stubbatti.version);
+
     require(env.configPath);
 
     stubServer.start();

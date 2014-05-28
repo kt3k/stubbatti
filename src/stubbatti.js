@@ -1,6 +1,7 @@
 // src/stubbatti.js
 
 var express = require('express');
+var manifest = require('../package.json');
 
 
 var DEFAULT_STUBBATTI_PORT = 28987;
@@ -24,6 +25,9 @@ var Stubbatti = function () {
         });
     });
 };
+
+
+Stubbatti.version = manifest.version;
 
 
 // available methods
