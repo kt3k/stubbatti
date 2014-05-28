@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "stub http server",
   "main": "index.js",
+  "bin": {
+      "stubbatti": "./bin/stubbatti"
+  },
   "scripts": {
     "test": "gulp"
   },
