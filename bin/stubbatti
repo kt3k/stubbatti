@@ -10,8 +10,8 @@ var stubServer = new Stubbatti();
 
 Stubbatti.methods.forEach(function (method) {
 
-    global[method] = function (path, opts) {
-        stubServer.register(method, path, opts);
+    global[method] = function (path, body, opts) {
+        stubServer.register(method, path, body, opts);
     };
 
 });

@@ -38,10 +38,11 @@ var stubbattiPt = Stubbatti.prototype;
  *
  * @param {String} method HTTP method
  * @param {String} path path to stub
+ * @param {String} body response body
  * @param {Object} options for a stub response
  * @return {void}
  */
-stubbattiPt.register = function (method, path, options) {
+stubbattiPt.register = function (method, path, body, options) {
 
     // cast string `options`
     if (typeof options === 'string') {
