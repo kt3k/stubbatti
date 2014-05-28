@@ -1,0 +1,42 @@
+#! /usr/bin/env node
+
+var Liftoff = require('liftoff');
+var Stubbatti = require('../src/stubbatti.js');
+
+
+// construct stubbatti DSL vocabulary
+
+var stubServer = new Stubbatti();
+
+Stubbatti.methods.forEach(function (method) {
+
+    global[method] = function (path, opts) {
+        stubServer.register(method, path, opts);
+    };
+
+});
+
+
+// set up liftoff params
+
+var cli = new Liftoff({
+    name: 'stubbatti',
+    moduleName: 'stubbatti',
+    configName: '{,.}stubbatti',
+    extensions: {
+        '.js': null,
+        '': null
+    },
+    processTitle: 'stubbatti',
+    cwdFlag: 'cwd',
+    configPathFlag: 'config'
+});
+
+
+// exec
+
+cli.launch(function (env) {
+    require(env.configPath);
+
+    stubServer.start();
+});
