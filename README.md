@@ -20,23 +20,27 @@ And in it you can write like following:
 get('/hello', 'Hello, world!');
 ```
 
-And if you run the command `stubbatti` then stubbatti server will start listening on port 28987 (for default) and will serve the string `Hello, world!` when the path `/hello` requested.
+And if you run the command `stubbatti` then stubbatti server will start listening on port 28987 (by default) and will serve the string `Hello, world!` when the path `/hello` requested.
 
 # Reference
 
-## `.stubbatti.js`
+## `.stubbatti.js` reference
 
-**delay**
+**Response delay**
+
+You can delay response with `delay` option:
 
 ```js
 get('/slow', 'slow response', {delay: 3000});
 ```
 
-With the above, `/slow` responses `slow response` after the delay of 3000 miliseconds.
+With the above, /slow responses after the delay of 3000 miliseconds.
 
 This is useful for testing timeout features of client libraries.
 
-**contentType**
+**Content-Type**
+
+You can specify the content-type of the reponse with `contentType` option:
 
 ```js
 get('/json', '{"a":1}', {contentType: 'application/json'});
@@ -46,6 +50,8 @@ With the above, `/json` responses `{"a":1}` with `Content-Type: application/json
 
 **Custom Headers**
 
+You can specify custom headers with `headers` option:
+
 ```js
 get('/custom', '{"a":1}', {headers: {
     'X-Custom': 'abc',
@@ -53,7 +59,7 @@ get('/custom', '{"a":1}', {headers: {
 }});
 ```
 
-`/custom` responses with the HTTP headers like:
+With the above settings, `/custom` responses with the HTTP headers like:
 
 ```
 X-Custom: abc
@@ -66,7 +72,6 @@ Available methods are `get`, `post`, `head`, `options`, `put`, `delete`.
 
 Followings are valid notations in `.stubbatti.js`.
 
-
 ```js
 get('/foo', '3');
 post('/bar', '6');
@@ -78,7 +83,8 @@ delete('/egg', '36');
 
 **Setting port**
 
-You can set the stub server's port number with port method:
+You can set the stub server's port number with `port` method:
+
 ```
 port(80);
 ```
@@ -87,7 +93,7 @@ The default port number of stubbatti is 28987.
 
 ## Command Line Options
 
-With `--config` option, you can specify custom stubbatti file.
+With `--config` option, you can specify a custom stubbatti file.
 
 ```bash
 stubbatti --config my_stub_settings.js
