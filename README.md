@@ -101,6 +101,10 @@ port(80);
 
 The default port number of stubbatti is 28987.
 
+**Syntax and semantics**
+
+The syntax and semantics of `.stubbatti.js` is basically same as `node.js` except some addition of global methods.
+
 ## Command Line Options
 
 With `--config` option, you can specify a custom stubbatti file.
