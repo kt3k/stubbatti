@@ -10,6 +10,8 @@ Using `npm`, install `stubbatti` command globally:
 npm install -g stubbatti
 ```
 
+**Note:** node.js >= 0.9 is required.
+
 # Usage
 
 Stubbatti is configurable with the file named `.stubbatti.js` or `stubbatti.js`.

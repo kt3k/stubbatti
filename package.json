@@ -4,7 +4,7 @@
   "description": "stub http server",
   "main": "index.js",
   "bin": {
-    "stubbatti": "./bin/stubbatti"
+    "stubbatti": "./bin/stubbatti.js"
   },
   "scripts": {
     "test": "jshint {.,bin,src,test}/*.js && mocha -R spec test",
@@ -33,5 +33,8 @@
   },
   "devDependencies": {
     "chai": "~1.9.1"
+  },
+  "engines": {
+    "node": ">= 0.9"
   }
 }
