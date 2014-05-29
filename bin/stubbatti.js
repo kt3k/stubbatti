@@ -1,5 +1,7 @@
 #! /usr/bin/env node
 
+'use strict';
+
 var Liftoff = require('liftoff');
 var Stubbatti = require('../src/stubbatti.js');
 
@@ -23,7 +25,7 @@ Stubbatti.methods.forEach(function (method) {
  * ```
  * Sets the stub server's port.
  */
-global['port'] = function (port) {
+global.port = function (port) {
 
     stubServer.setPort(port);
 

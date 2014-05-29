@@ -1,5 +1,7 @@
 // src/stubbatti.js
 
+'use strict';
+
 var express = require('express');
 var manifest = require('../package.json');
 

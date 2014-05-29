@@ -7,7 +7,8 @@
     "stubbatti": "./bin/stubbatti"
   },
   "scripts": {
-    "test": "gulp"
+    "test": "jshint {.,bin,src,test}/*.js && mocha -R spec test",
+    "coveralls": ""
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,8 @@
     "stub",
     "http",
     "server",
-    "mock"
+    "mock",
+    "cli"
   ],
   "author": "Yoshiya Hinosawa <stibium121@gmail.com> (https://twitter.com/kt3k)",
   "license": "MIT",
@@ -30,8 +32,6 @@
     "liftoff": "~0.10.0"
   },
   "devDependencies": {
-    "gulp": "~3.6.2",
-    "gulp-jshint": "~1.6.1",
     "chai": "~1.9.1"
   }
 }

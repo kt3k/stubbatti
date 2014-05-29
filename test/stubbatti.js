@@ -1,3 +1,8 @@
+// test/stubbatti.js
+
+/* global describe, it, afterEach, beforeEach */
+
+'use strict';
 
 var exec = require('child_process').exec;
 var expect = require('chai').expect;
