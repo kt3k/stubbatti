@@ -8,11 +8,27 @@ var DEFAULT_STUBBATTI_PORT = 28987;
 
 
 /**
+ * Call a callback if it's callable.
+ *
+ * @param {Object} cb callback or any object.
+ * @return {void}
+ */
+var softCall = function (cb) {
+
+    if (typeof cb === 'function') {
+        cb();
+    }
+
+};
+
+
+/**
  * Stubbatti class represents a stub server instance.
  */
 var Stubbatti = function () {
     this.port = DEFAULT_STUBBATTI_PORT;
     this.app = express();
+    this.console = global.console;
 
     var stubbatti = this;
 
@@ -35,6 +51,17 @@ Stubbatti.methods = ['get', 'post', 'head', 'delete', 'put', 'options'];
 
 // prototype variable
 var stubbattiPt = Stubbatti.prototype;
+
+
+/**
+ * Set the console object.
+ *
+ * @param {Object} console console object
+ * @return {void}
+ */
+stubbattiPt.setConsole = function (console) {
+    this.console = console;
+};
 
 
 /**
@@ -62,12 +89,17 @@ stubbattiPt.register = function (method, path, body, options) {
 /**
  * Start the server instance listening.
  *
+ * @param {Function} cb callback function which called when the server started
  * @return {void}
  */
-stubbattiPt.start = function () {
+stubbattiPt.start = function (cb) {
+
+    var self = this;
 
     var server = this.server = this.app.listen(this.port, function () {
-        console.log('The stub server is listening on %s:%s', server.address().address, server.address().port);
+        self.console.log('The stub server is listening on %s:%s', server.address().address, server.address().port);
+
+        softCall(cb);
     });
 
     // set timeout of 0.5 sec to each connection
@@ -85,9 +117,11 @@ stubbattiPt.start = function () {
  *
  * @return {void}
  */
-stubbattiPt.stop = function () {
+stubbattiPt.stop = function (cb) {
 
     if (this.server == null) {
+        softCall(cb);
+
         return;
     }
 
@@ -97,8 +131,9 @@ stubbattiPt.stop = function () {
 
         self.server = null;
 
-        console.log('The stub server has been stopped.');
+        self.console.log('The stub server has been stopped.');
 
+        softCall(cb);
     });
 };
 
