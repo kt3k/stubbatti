@@ -1,0 +1,6 @@
+{
+    "--title": "stubbatti (dev version) API documentation",
+    "--output": ".doc",
+    "--warnings": "-nodoc",
+    "--": "src"
+}
