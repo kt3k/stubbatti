@@ -1,7 +1,7 @@
 {
   "name": "stubbatti",
   "version": "0.2.0",
-  "description": "stub http server",
+  "description": "A command line stub http server with special DSL.",
   "main": "index.js",
   "bin": {
     "stubbatti": "./bin/stubbatti.js"

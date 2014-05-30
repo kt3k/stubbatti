@@ -2,7 +2,7 @@
 
 [![Build Status](https://img.shields.io/travis/kt3k/stubbatti.svg?style=flat)](https://travis-ci.org/kt3k/stubbatti)
 
-> stub http server, configurable by stubbatti DSL (WIP)
+> A command line stub http server with special DSL.
 
 # Install
 
