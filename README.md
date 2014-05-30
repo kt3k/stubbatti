@@ -117,20 +117,16 @@ With `--config` option, you can specify a custom stubbatti file.
 stubbatti --config my_stub_settings.js
 ```
 
+With `--kill` option, you can kill the server. With this option, you can set your test script like following:
 
-## Utility
-
-Requesting (GET) `/__kill` kills the stub server. This is usable like the below:
-
-```bash
+```
 stubbatti & # launch a stub server
 
 # run unit test using the stub http server
 ...
 
-curl 0.0.0.0:28987/__kill # kill the stub server
+stubbatti --kill # kill the stub server
 ```
-
 
 # LICENSE
 
