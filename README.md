@@ -135,3 +135,5 @@ MIT
 # Note
 
 This command is a thin wrapper of `express` and focusing on stubbing an http server on test environments. This cli should be useful when you write the unit test of an http client or a web api client.
+
+# [API documentation](http://kt3k.github.io/stubbatti/doc/v0.2.0/)

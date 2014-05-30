@@ -1,7 +1,9 @@
 ---
 version: 0.2.0
 files:
-  README.md: Stubbatti v%.%.%
+  README.md:
+  - Stubbatti v%.%.%
+  - doc/v%.%.%
   package.json: ! '"version": "%.%.%"'
   .jsduck.release:
   - stubbatti v%.%.%
