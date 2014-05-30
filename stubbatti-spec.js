@@ -10,19 +10,24 @@ var expect = require('chai').expect;
 
 var Stubbatti = require('./');
 
-var DEFAULT_HOST = 'http://0.0.0.0:28987';
+var DEFAULT_HOST = '0.0.0.0';
+var DEFAULT_PORT = 28987;
 
 // test utility for get request the server
-var get = function (path, cb) {
+var request = function (method, path, cb) {
 
-    http.get(DEFAULT_HOST + path, function (res) {
+    http.request({hostname: DEFAULT_HOST, port: DEFAULT_PORT, path: path, method: method}, function (res) {
 
         res.pipe(concat({encoding: 'string'}, function (data) {
             cb(data, res.headers, res.statusCode);
         }));
 
-    });
+    }).end();
 
+};
+
+var get = function (path, cb) {
+    request('GET', path, cb);
 };
 
 describe('Stubbatti', function () {
@@ -146,6 +151,66 @@ describe('Stubbatti', function () {
                     expect(headers['x-header']).to.equal('def');
 
                     done();
+
+                });
+
+            });
+
+        });
+
+
+        it('registers a response for POST, HEAD, OPTIONS, PUT, DELETE, TRACE method', function (done) {
+
+            stubbatti.register('post', '/post', 'post');
+            stubbatti.register('head', '/head', '');
+            stubbatti.register('options', '/options', 'options');
+            stubbatti.register('put', '/put', 'put');
+            stubbatti.register('delete', '/delete', 'delete');
+            stubbatti.register('trace', '/trace', 'trace');
+
+            stubbatti.start(function () {
+
+                request('POST', '/post', function (data, headers, status) {
+
+                    expect(data).to.equal('post');
+                    expect(status).to.equal(200);
+
+                    request('HEAD', '/head', function (data, headers, status) {
+
+                        expect(data).to.equal('');
+                        expect(status).to.equal(200);
+
+                        request('OPTIONS', '/options', function (data, headers, status) {
+
+                            expect(data).to.equal('options');
+                            expect(status).to.equal(200);
+
+                            request('PUT', '/put', function (data, headers, status) {
+
+                                expect(data).to.equal('put');
+                                expect(status).to.equal(200);
+
+                                request('DELETE', '/delete', function (data, headers, status) {
+
+                                    expect(data).to.equal('delete');
+                                    expect(status).to.equal(200);
+
+                                    request('TRACE', '/trace', function (data, headers, status) {
+
+                                        expect(data).to.equal('trace');
+                                        expect(status).to.equal(200);
+
+                                        done();
+
+                                    });
+
+                                });
+
+                            });
+
+                        });
+
+                    });
 
                 });
 

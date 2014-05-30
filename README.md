@@ -103,6 +103,7 @@ head('/baz', '15');
 options('/spam', '21');
 put('/ham', '28');
 global.delete('/egg', '36');
+trace('/egg', '45');
 ```
 
 **Setting port**
