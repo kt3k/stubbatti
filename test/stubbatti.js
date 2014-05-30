@@ -9,6 +9,19 @@ var expect = require('chai').expect;
 
 var Stubbatti = require('../src/stubbatti.js');
 
+var DEFAULT_HOST = '0.0.0.0:28987';
+
+
+// test utility for get request the server
+var get = function (path, cb) {
+
+    exec('curl ' + DEFAULT_HOST + path, function (error, stdout, stderr) {
+        cb(stdout.toString());
+    });
+
+};
+
+
 describe('Stubbatti', function () {
 
     var stubbatti;
@@ -38,15 +51,41 @@ describe('Stubbatti', function () {
 
             stubbatti.start(function () {
 
-                exec('curl 0.0.0.0:28987/hello', function (err, stdout, stderr) {
+                get('/hello', function (responseText) {
 
-                    expect(stdout).to.equal('Hello, world!');
+                    expect(responseText).to.equal('Hello, world!');
 
                     done();
 
                 });
 
             });
+        });
+
+        it('registers a delayed response for a path if delay option is specified', function (done) {
+
+            stubbatti.register('get', '/delay', 'delayed response', {delay: 1000});
+
+            var startTime = new Date().getTime();
+
+            stubbatti.start(function () {
+
+                get('/delay', function (responseText) {
+
+                    expect(responseText).to.equal('delayed response');
+
+                    var endTime = new Date().getTime();
+
+                    var error = Math.abs(startTime + 1000 - endTime);
+
+                    expect(error).to.be.below(100);
+
+                    done();
+
+                });
+
+            });
+
         });
     });
 
