@@ -1,1 +1,1 @@
-exports = require('./src/stubbatti.js');
+module.exports = require('./src/stubbatti.js');
