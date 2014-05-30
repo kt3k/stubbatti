@@ -3,7 +3,7 @@
 'use strict';
 
 var express = require('express');
-var manifest = require('../package.json');
+var version = require('../package.json').version;
 
 
 var DEFAULT_STUBBATTI_PORT = 28987;
@@ -45,11 +45,12 @@ var Stubbatti = function () {
 };
 
 
-Stubbatti.version = manifest.version;
+Stubbatti.version = version;
 
 
-// available methods
-Stubbatti.methods = ['get', 'post', 'head', 'delete', 'put', 'options'];
+// available methods (RFC 2616)
+// from http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9
+Stubbatti.methods = ['get', 'post', 'head', 'delete', 'put', 'options', 'trace', 'connect'];
 
 // prototype variable
 var stubbattiPt = Stubbatti.prototype;
@@ -57,6 +58,8 @@ var stubbattiPt = Stubbatti.prototype;
 
 /**
  * Set the console object.
+ *
+ * This method is only for tests.
  *
  * @param {Object} console console object
  * @return {void}
@@ -69,19 +72,48 @@ stubbattiPt.setConsole = function (console) {
 /**
  * Register method and path with options for a stub response.
  *
+ * Available options are `delay`:Number, `status`:Number, `contentType`:String and `headers`:Object<String, String>.
+ *
+ * `delay` is for the delay miliseconds of the response.
+ * `status` is for the http status of the response.
+ * `headers` is for the custom HTTP headers of the response.
+ *
  * @param {String} method HTTP method
  * @param {String} path path to stub
  * @param {String} body response body
- * @param {Object} options for a stub response
+ * @param {Object} options options for a stub response
  * @return {void}
  */
 stubbattiPt.register = function (method, path, body, options) {
 
+    options = options || {};
+
+    var delay = options.delay ? +options.delay : 0;
+    var status = options.status;
+    var contentType = options.contentType;
+    var headers = options.headers;
+
     // register method and path
     this.app[method](path, function (req, res) {
 
-        res.send(body);
-        res.end();
+        setTimeout(function () {
+
+            if (status) {
+                res.status(status);
+            }
+
+            if (contentType) {
+                res.set('Content-Type', contentType);
+            }
+
+            if (headers) {
+                res.set(headers);
+            }
+
+            res.send(body);
+            res.end();
+
+        }, delay);
 
     });
 
@@ -117,6 +149,7 @@ stubbattiPt.start = function (cb) {
 /**
  * Stop the server.
  *
+ * @param {Function} cb A callback function which will be called when the server stopped
  * @return {void}
  */
 stubbattiPt.stop = function (cb) {
