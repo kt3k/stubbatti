@@ -7,7 +7,7 @@
 var exec = require('child_process').exec;
 var expect = require('chai').expect;
 
-var Stubbatti = require('../src/stubbatti.js');
+var Stubbatti = require('../');
 
 var DEFAULT_HOST = '0.0.0.0:28987';
 
@@ -15,7 +15,7 @@ var DEFAULT_HOST = '0.0.0.0:28987';
 // test utility for get request the server
 var get = function (path, cb) {
 
-    exec('curl ' + DEFAULT_HOST + path, function (error, stdout, stderr) {
+    exec('curl ' + DEFAULT_HOST + path, function (error, stdout) {
         cb(stdout.toString());
     });
 
