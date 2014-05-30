@@ -7,7 +7,7 @@
     "stubbatti": "./bin/stubbatti.js"
   },
   "scripts": {
-    "test": "jshint --exclude node_modules . && mocha -R spec test",
+    "test": "jshint . && mocha -R spec test",
     "coveralls": "",
     "doc-release": "jsduck --config .jsduck.release.json"
   },
