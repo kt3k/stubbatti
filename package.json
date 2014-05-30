@@ -4,7 +4,7 @@
   "description": "A command line stub http server with special DSL.",
   "main": "index.js",
   "bin": {
-    "stubbatti": "./bin/stubbatti.js"
+    "stubbatti": "./cli.js"
   },
   "scripts": {
     "test": "jshint . && mocha -R spec stubbatti-spec.js",
