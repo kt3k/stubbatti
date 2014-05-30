@@ -130,6 +130,29 @@ describe('Stubbatti', function () {
 
         });
 
+
+        it('registers a response with custom headers if `headers` options are set', function (done) {
+
+            stubbatti.register('get', '/custom', 'custom', {headers: {
+                'X-Custom': 'abc',
+                'X-Header': 'def'
+            }});
+
+            stubbatti.start(function () {
+
+                get('/custom', function (data, headers) {
+
+                    expect(headers['x-custom']).to.equal('abc');
+                    expect(headers['x-header']).to.equal('def');
+
+                    done();
+
+                });
+
+            });
+
+        });
+
     });
 
 });
