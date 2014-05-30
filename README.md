@@ -1,5 +1,7 @@
 # Stubbatti v0.2.0
 
+[![Build Status](https://img.shields.io/travis/kt3k/stubbatti.svg?style=flat)](https://travis-ci.org/kt3k/stubbatti)
+
 > stub http server, configurable by stubbatti DSL (WIP)
 
 # Install
