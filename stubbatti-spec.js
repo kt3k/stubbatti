@@ -18,7 +18,7 @@ var get = function (path, cb) {
     http.get(DEFAULT_HOST + path, function (res) {
 
         res.pipe(concat({encoding: 'string'}, function (data) {
-            cb(data, res.headers);
+            cb(data, res.headers, res.statusCode);
         }));
 
     });
@@ -54,9 +54,10 @@ describe('Stubbatti', function () {
 
             stubbatti.start(function () {
 
-                get('/hello', function (data) {
+                get('/hello', function (data, headers, status) {
 
                     expect(data).to.equal('Hello, world!');
+                    expect(status).to.equal(200);
 
                     done();
 
@@ -101,6 +102,25 @@ describe('Stubbatti', function () {
                 get('/json', function (data, headers) {
 
                     expect(headers['content-type']).to.match(/^application\/json;/);
+
+                    done();
+
+                });
+
+            });
+
+        });
+
+
+        it('registers a response with a custom status code if status option is set', function (done) {
+
+            stubbatti.register('get', '/402', 'payment required', {status: 402});
+
+            stubbatti.start(function () {
+
+                get('/402', function (data, headers, status) {
+
+                    expect(status).to.equal(402);
 
                     done();
 

@@ -62,6 +62,16 @@ get('/json', '{"a":1}', {contentType: 'application/json'});
 
 With the above, `/json` responses `{"a":1}` with `Content-Type: application/json`.
 
+**Status Code**
+
+You can specify the status code of the response with `status` option:
+
+```js
+get('/402', 'payment required', {status: 402});
+```
+
+With the above, `/402` responses `payment required` with http status code `402`.
+
 **Custom Headers**
 
 You can specify custom headers with `headers` option:
