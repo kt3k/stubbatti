@@ -35,6 +35,7 @@ var Stubbatti = function () {
     var stubbatti = this;
 
     this.app.get('/__kill', function (req, res) {
+        res.set('Connection', 'close');
         res.send('The stub server has been killed.\n');
         res.end();
 
@@ -134,13 +135,6 @@ stubbattiPt.start = function (cb) {
         self.console.log('The stub server is listening on %s:%s', server.address().address, server.address().port);
 
         softCall(cb);
-    });
-
-    // set timeout of 0.5 sec to each connection
-    server.on('connection', function (socket) {
-
-        socket.setTimeout(500);
-
     });
 
 };
