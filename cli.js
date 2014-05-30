@@ -3,7 +3,7 @@
 'use strict';
 
 var Liftoff = require('liftoff');
-var Stubbatti = require('../src/stubbatti.js');
+var Stubbatti = require('./');
 
 
 // construct stubbatti DSL vocabulary

@@ -7,7 +7,7 @@
 var exec = require('child_process').exec;
 var expect = require('chai').expect;
 
-var Stubbatti = require('../');
+var Stubbatti = require('./');
 
 var DEFAULT_HOST = '0.0.0.0:28987';
 
