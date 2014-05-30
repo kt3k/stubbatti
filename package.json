@@ -7,7 +7,7 @@
     "stubbatti": "./bin/stubbatti.js"
   },
   "scripts": {
-    "test": "jshint {.,bin,src,test}/*.js && mocha -R spec test",
+    "test": "jshint --exclude node_modules . && mocha -R spec test",
     "coveralls": ""
   },
   "repository": {
