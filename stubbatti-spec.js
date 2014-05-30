@@ -4,23 +4,26 @@
 
 'use strict';
 
-var exec = require('child_process').exec;
+var http = require('http');
+var concat = require('concat-stream');
 var expect = require('chai').expect;
 
 var Stubbatti = require('./');
 
-var DEFAULT_HOST = '0.0.0.0:28987';
-
+var DEFAULT_HOST = 'http://0.0.0.0:28987';
 
 // test utility for get request the server
 var get = function (path, cb) {
 
-    exec('curl ' + DEFAULT_HOST + path, function (error, stdout) {
-        cb(stdout.toString());
+    http.get(DEFAULT_HOST + path, function (res) {
+
+        res.pipe(concat({encoding: 'string'}, function (data) {
+            cb(data, res.headers);
+        }));
+
     });
 
 };
-
 
 describe('Stubbatti', function () {
 
@@ -51,9 +54,9 @@ describe('Stubbatti', function () {
 
             stubbatti.start(function () {
 
-                get('/hello', function (responseText) {
+                get('/hello', function (data) {
 
-                    expect(responseText).to.equal('Hello, world!');
+                    expect(data).to.equal('Hello, world!');
 
                     done();
 
@@ -70,9 +73,9 @@ describe('Stubbatti', function () {
 
             stubbatti.start(function () {
 
-                get('/delay', function (responseText) {
+                get('/delay', function (data) {
 
-                    expect(responseText).to.equal('delayed response');
+                    expect(data).to.equal('delayed response');
 
                     var endTime = new Date().getTime();
 
@@ -87,6 +90,26 @@ describe('Stubbatti', function () {
             });
 
         });
+
+
+        it('registers a response with custom Content-Type if contentType option is set', function (done) {
+
+            stubbatti.register('get', '/json', '{}', {contentType: 'application/json'});
+
+            stubbatti.start(function () {
+
+                get('/json', function (data, headers) {
+
+                    expect(headers['content-type']).to.match(/^application\/json;/);
+
+                    done();
+
+                });
+
+            });
+
+        });
+
     });
 
 });
