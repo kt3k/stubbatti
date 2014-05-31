@@ -11,7 +11,7 @@ var Stubbatti = require('./');
 var DEFAULT_HOST = '0.0.0.0';
 var DEFAULT_PORT = 28987;
 
-// test utility for get request the server
+// test utility for requesting the server
 var request = function (method, path, cb) {
 
     http.request({hostname: DEFAULT_HOST, port: DEFAULT_PORT, path: path, method: method}, function (res) {
@@ -24,6 +24,7 @@ var request = function (method, path, cb) {
 
 };
 
+// get request utility
 var get = function (path, cb) {
     request('GET', path, cb);
 };
