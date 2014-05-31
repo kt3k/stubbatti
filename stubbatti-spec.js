@@ -220,4 +220,32 @@ describe('Stubbatti', function () {
 
     });
 
+
+    describe('setPort', function () {
+
+        it('sets the port of the stub server', function (done) {
+
+            stubbatti.setPort(12379);
+
+            stubbatti.register('get', '/hello', 'Hello, world!');
+
+            stubbatti.start(function () {
+
+                http.get('http://0.0.0.0:12379/hello', function (res) {
+
+                    res.pipe(concat({encoding: 'string'}, function (data) {
+
+                        expect(data).to.equal('Hello, world!');
+
+                        done();
+
+                    }));
+                });
+
+            });
+
+        });
+
+    });
+
 });
