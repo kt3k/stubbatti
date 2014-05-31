@@ -148,3 +148,16 @@ MIT
 This command is a thin wrapper of `express` and focusing on stubbing an http server on test environments. This cli should be useful when you write the unit test of an http client or a web api client.
 
 # [API documentation](http://kt3k.github.io/stubbatti/doc/v1.0.0/)
+
+# Similar tools
+
+- [Betamax](https://github.com/robfletcher/betamax) for JVM languages
+- [VCR](https://github.com/vcr/vcr) for Ruby
+- [WireMock](https://github.com/tomakehurst/wiremock) for JVM languages
+- [Stubby](https://github.com/azagniotov/stubby4j) for JVM languages and has CLI
+  - Stubby is very similar to stubbatti, but the main target is JVM language with gradle build configuration.
+- [wiremock-php](https://github.com/rowanhill/wiremock-php) for PHP
+- [objc-mocktail](https://github.com/square/objc-mocktail) for Objective-C
+
+The difference of stubbatti from above tools is that it's just a CLI stub server and can be used with any language through hooks in a shell script.
+And it needs only one setting file `.stubbatti.js` with the simple language.
