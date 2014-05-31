@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "jshint . && mocha -R spec stubbatti-spec.js",
+    "cov": "istanbul cover _mocha -- -R spec stubbatti-spec.js",
     "coveralls": "istanbul cover _mocha -- stubbatti-spec.js && cat ./coverage/lcov.info | coveralls",
     "doc-release": "jsduck --config .jsduck.release.json"
   },
