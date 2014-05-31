@@ -6,3 +6,6 @@ node_modules
 
 # local api doc
 .doc
+
+# coverage data
+coverage
