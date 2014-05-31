@@ -1,6 +1,6 @@
 {
-    "--title": "stubbatti v0.2.0 API documentation",
-    "--output": "doc/v0.2.0",
+    "--title": "stubbatti v1.0.0 API documentation",
+    "--output": "doc/v1.0.0",
     "--warnings": "-nodoc",
-    "--": "src"
+    "--": "stubbatti-impl.js"
 }
