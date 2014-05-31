@@ -3,17 +3,18 @@
 'use strict';
 
 var Liftoff = require('liftoff');
+var http = require('http');
 var Stubbatti = require('./');
 
 
 // construct stubbatti DSL vocabulary
 
-var stubServer = new Stubbatti();
+var stubbatti = new Stubbatti();
 
 Stubbatti.methods.forEach(function (method) {
 
     global[method] = function (path, body, opts) {
-        stubServer.register(method, path, body, opts);
+        stubbatti.register(method, path, body, opts);
     };
 
 });
@@ -27,7 +28,7 @@ Stubbatti.methods.forEach(function (method) {
  */
 global.port = function (port) {
 
-    stubServer.setPort(port);
+    stubbatti.setPort(port);
 
 };
 
@@ -48,12 +49,38 @@ var cli = new Liftoff({
 });
 
 
-// exec
+// main
 
-cli.launch(function (env) {
-    console.log('Stubbatti server version %s.', Stubbatti.version);
+var main = function (env) {
 
+    // load user defined stubbatti file
     require(env.configPath);
 
-    stubServer.start();
-});
+    // if `--kill` option is specified then don't launch a stub server but kill the existing sevrer.
+    if (env.argv.kill) {
+        killServer(stubbatti.port);
+
+        return;
+    }
+
+    console.log('Stubbatti server version %s.', Stubbatti.version);
+
+    // launch a stub server
+    stubbatti.start();
+};
+
+/**
+ * Kill the stub server on the port number.
+ *
+ * Note: The path `/__kill` is the special path for killing the stub server.
+ *
+ * @param {Number} port The port number.
+ * @return {void}
+ */
+var killServer = function (port) {
+
+    http.get('http://0.0.0.0:' + port + '/__kill');
+
+};
+
+cli.launch(main);
