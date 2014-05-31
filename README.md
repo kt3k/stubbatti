@@ -6,13 +6,13 @@
 
 # Install
 
-Using `npm`, install `stubbatti` command globally:
+- Install `node.js` ( >= 0.9 ).
+
+- Using `npm`, install `stubbatti` command globally:
 
 ```bash
 npm install -g stubbatti
 ```
-
-**Note:** node.js >= 0.9 is required.
 
 # Usage
 
