@@ -1,6 +1,7 @@
 # Stubbatti v1.0.0
 
 [![Build Status](https://img.shields.io/travis/kt3k/stubbatti.svg?style=flat)](https://travis-ci.org/kt3k/stubbatti)
+[![Coverage Status](https://img.shields.io/coveralls/kt3k/stubbatti.svg?style=flat)](https://coveralls.io/r/kt3k/stubbatti?branch=master)
 
 > A command line stub http server with the special DSL.
 
