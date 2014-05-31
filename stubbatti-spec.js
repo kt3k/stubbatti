@@ -1,5 +1,3 @@
-// test/stubbatti.js
-
 /* global describe, it, afterEach, beforeEach */
 
 'use strict';

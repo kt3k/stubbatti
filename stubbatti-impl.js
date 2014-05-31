@@ -1,5 +1,3 @@
-// src/stubbatti.js
-
 'use strict';
 
 var express = require('express');
