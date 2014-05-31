@@ -79,7 +79,9 @@ var main = function (env) {
  */
 var killServer = function (port) {
 
-    http.get('http://0.0.0.0:' + port + '/__kill');
+    http.get('http://0.0.0.0:' + port + '/__kill').on('error', function () {
+        console.log('No stub server on the port %s.', port);
+    });
 
 };
 
