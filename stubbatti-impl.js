@@ -32,9 +32,8 @@ var Stubbatti = function () {
 
     var stubbatti = this;
 
-    this.app.get('/__kill', function (req, res) {
+    this.app.head('/__kill', function (req, res) {
         res.set('Connection', 'close');
-        res.send('The stub server has been killed.\n');
         res.end();
 
         stubbatti.stop();

@@ -252,7 +252,7 @@ describe('Stubbatti', function () {
 
     describe('Special Paths', function () {
 
-        describe('/__kill', function () {
+        describe('HEAD /__kill', function () {
 
             it('stops the stub server', function (done) {
 
@@ -262,7 +262,7 @@ describe('Stubbatti', function () {
 
                 stubbatti.start(function () {
 
-                    get('/__kill', function () {
+                    request('HEAD', '/__kill', function () {
 
                         mock.verify();
 
