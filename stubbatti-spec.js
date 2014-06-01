@@ -222,6 +222,27 @@ describe('Stubbatti', function () {
     });
 
 
+    describe('stop', function () {
+
+        it('does nothing without an error when called twice', function (done) {
+
+            stubbatti.start(function () {
+
+                stubbatti.stop(function () {
+
+                    stubbatti.stop();
+
+                    done();
+
+                });
+
+            });
+
+        });
+
+    });
+
+
     describe('setPort', function () {
 
         it('sets the port of the stub server', function (done) {
