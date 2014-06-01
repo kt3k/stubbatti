@@ -1,8 +1,8 @@
 todo:
-- istanbul
-- coveralls
 - npm module badge
 - dependency badge
 
 done:
 - kill option
+- istanbul
+- coveralls
