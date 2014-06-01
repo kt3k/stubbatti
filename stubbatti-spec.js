@@ -5,6 +5,7 @@
 var http = require('http');
 var concat = require('concat-stream');
 var expect = require('chai').expect;
+var sinon = require('sinon');
 
 var Stubbatti = require('./');
 
@@ -69,6 +70,7 @@ describe('Stubbatti', function () {
 
             });
         });
+
 
         it('registers a delayed response for a path if delay option is specified', function (done) {
 
@@ -239,6 +241,35 @@ describe('Stubbatti', function () {
                         done();
 
                     }));
+                });
+
+            });
+
+        });
+
+    });
+
+
+    describe('Special Paths', function () {
+
+        describe('/__kill', function () {
+
+            it('stops the stub server', function (done) {
+
+                var mock = sinon.mock(stubbatti);
+
+                mock.expects('stop').once();
+
+                stubbatti.start(function () {
+
+                    get('/__kill', function () {
+
+                        mock.verify();
+
+                        done();
+
+                    });
+
                 });
 
             });

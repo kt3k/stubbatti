@@ -35,7 +35,8 @@
   },
   "devDependencies": {
     "chai": "~1.9.1",
-    "concat-stream": "~1.4.5"
+    "concat-stream": "~1.4.5",
+    "sinon": "~1.10.1"
   },
   "engines": {
     "node": ">= 0.9"

@@ -37,9 +37,8 @@ var Stubbatti = function () {
         res.send('The stub server has been killed.\n');
         res.end();
 
-        setTimeout(function () {
-            stubbatti.stop();
-        });
+        stubbatti.stop();
+
     });
 };
 
