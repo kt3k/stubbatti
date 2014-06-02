@@ -3,6 +3,7 @@
 'use strict';
 
 var Liftoff = require('liftoff');
+var argv = require('minimist')(process.argv.slice(2));
 var http = require('http');
 var Stubbatti = require('./');
 
@@ -44,8 +45,6 @@ var cli = new Liftoff({
         '': null
     },
     processTitle: 'stubbatti',
-    cwdFlag: 'cwd',
-    configPathFlag: 'config'
 });
 
 
@@ -57,7 +56,7 @@ var main = function (env) {
     require(env.configPath);
 
     // if `--kill` option is specified then don't launch a stub server but kill the existing sevrer.
-    if (env.argv.kill) {
+    if (argv.kill) {
         killServer(stubbatti.port);
 
         return;
@@ -79,10 +78,13 @@ var main = function (env) {
  */
 var killServer = function (port) {
 
-    http.get('http://0.0.0.0:' + port + '/__kill').on('error', function () {
+    http.request({host: '0.0.0.0', port: port, path: '/__kill', method:'HEAD'}).on('error', function () {
         console.log('No stub server on the port %s.', port);
-    });
+    }).end();
 
 };
 
-cli.launch(main);
+cli.launch({
+    cwd: argv.cwd,
+    configPath: argv.config
+}, main);
