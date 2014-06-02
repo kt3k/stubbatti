@@ -168,5 +168,5 @@ This command is a thin wrapper of `express` and focusing on stubbing an http ser
 - [wiremock-php](https://github.com/rowanhill/wiremock-php) for PHP
 - [objc-mocktail](https://github.com/square/objc-mocktail) for Objective-C
 
-The difference of stubbatti from above tools is that it's just a CLI stub server and can be used with any language through hooks in a shell script.
+The difference of stubbatti from the above tools is that it's just a CLI stub server and can be used with any language through hooks in a shell script.
 And it needs only one setting file `.stubbatti.js` with the simple language.
