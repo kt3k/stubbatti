@@ -2,8 +2,8 @@
 
 [![Build Status](https://img.shields.io/travis/kt3k/stubbatti.svg?style=flat)](https://travis-ci.org/kt3k/stubbatti)
 [![Coverage Status](https://img.shields.io/coveralls/kt3k/stubbatti.svg?style=flat)](https://coveralls.io/r/kt3k/stubbatti?branch=master)
-![Npm Version](https://img.shields.io/npm/v/stubbatti.svg?style=flat)
-![MIT License](http://img.shields.io/badge/license-mit-blue.svg?style=flat)
+[![Npm Version](https://img.shields.io/npm/v/stubbatti.svg?style=flat)](https://www.npmjs.org/package/stubbatti)
+[![MIT License](http://img.shields.io/badge/license-mit-blue.svg?style=flat)](https://github.com/kt3k/stubbatti/blob/master/LICENSE)
 
 [![Dependency Status](https://david-dm.org/kt3k/stubbatti.svg?style=flat)](https://david-dm.org/kt3k/stubbatti)
 
