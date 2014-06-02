@@ -1,8 +1,9 @@
 todo:
-- npm module badge
-- dependency badge
+- update dependencies (express, liftoff)
 
 done:
+- npm module badge
+- dependency badge
 - kill option
 - istanbul
 - coveralls
