@@ -1,10 +1,14 @@
 'use strict';
 
 var express = require('express');
+var http = require('http');
 var version = require('./package.json').version;
 
-
 var DEFAULT_STUBBATTI_PORT = 28987;
+
+var KILL_PATH = '/__kill';
+var KILL_METHOD = 'head';
+var KILL_METHOD_CAPITAL = 'HEAD';
 
 
 /**
@@ -32,7 +36,7 @@ var Stubbatti = function () {
 
     var stubbatti = this;
 
-    this.app.head('/__kill', function (req, res) {
+    this.app[KILL_METHOD](KILL_PATH, function (req, res) {
         res.set('Connection', 'close');
         res.end();
 
@@ -172,6 +176,25 @@ stubbattiPt.stop = function (cb) {
  */
 stubbattiPt.setPort = function (port) {
     this.port = port;
+};
+
+
+/**
+ * Kill the stub server on the port number.
+ *
+ * Note: The path `/__kill` is the special path for killing the stub server.
+ *
+ * @param {Number} port The port number.
+ * @return {void}
+ */
+stubbattiPt.killExistingServer = function () {
+
+    var port = this.port;
+
+    http.request({host: '0.0.0.0', port: port, path: KILL_PATH, method:KILL_METHOD_CAPITAL}).on('error', function () {
+        console.log('No stub server on the port %s.', port);
+    }).end();
+
 };
 
 
