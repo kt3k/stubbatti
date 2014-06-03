@@ -4,7 +4,6 @@
 
 var Liftoff = require('liftoff');
 var argv = require('minimist')(process.argv.slice(2));
-var http = require('http');
 var Stubbatti = require('./');
 
 
@@ -57,7 +56,7 @@ var main = function (env) {
 
     // if `--kill` option is specified then don't launch a stub server but kill the existing sevrer.
     if (argv.kill) {
-        killServer(stubbatti.port);
+        stubbatti.killExistingServer();
 
         return;
     }
@@ -68,21 +67,6 @@ var main = function (env) {
     stubbatti.start();
 };
 
-/**
- * Kill the stub server on the port number.
- *
- * Note: The path `/__kill` is the special path for killing the stub server.
- *
- * @param {Number} port The port number.
- * @return {void}
- */
-var killServer = function (port) {
-
-    http.request({host: '0.0.0.0', port: port, path: '/__kill', method:'HEAD'}).on('error', function () {
-        console.log('No stub server on the port %s.', port);
-    }).end();
-
-};
 
 cli.launch({
     cwd: argv.cwd,
