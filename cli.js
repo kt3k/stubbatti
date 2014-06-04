@@ -5,6 +5,7 @@
 var Liftoff = require('liftoff');
 var argv = require('minimist')(process.argv.slice(2));
 var Stubbatti = require('./');
+var homepage = require('./package.json').homepage;
 
 
 // construct stubbatti DSL vocabulary
@@ -40,8 +41,7 @@ var cli = new Liftoff({
     moduleName: 'stubbatti',
     configName: '{,.}stubbatti',
     extensions: {
-        '.js': null,
-        '': null
+        '.js': null
     },
     processTitle: 'stubbatti',
 });
@@ -50,6 +50,17 @@ var cli = new Liftoff({
 // main
 
 var main = function (env) {
+
+    console.log('Stubbatti server version %s.', Stubbatti.version);
+
+    if (!env.configPath) {
+        console.log('Error: `stubbatti` file not found.');
+        console.log('see %s', homepage);
+
+        return;
+    }
+
+    console.log('Loading %s.', env.configPath);
 
     // load user defined stubbatti file
     require(env.configPath);
@@ -60,8 +71,6 @@ var main = function (env) {
 
         return;
     }
-
-    console.log('Stubbatti server version %s.', Stubbatti.version);
 
     // launch a stub server
     stubbatti.start();
