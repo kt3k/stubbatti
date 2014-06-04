@@ -1,7 +1,8 @@
 todo:
-- update dependencies (express, liftoff)
+- update dependencies (express)
 
 done:
+- update dependencies (liftoff)
 - npm module badge
 - dependency badge
 - kill option
