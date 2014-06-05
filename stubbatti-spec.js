@@ -271,6 +271,33 @@ describe('Stubbatti', function () {
     });
 
 
+    describe('killExistingServer', function () {
+
+        it('kills the existing server', function (done) {
+
+            var mock = sinon.mock(stubbatti);
+
+            mock.expects('stop').once();
+
+            stubbatti.start(function () {
+
+                stubbatti.killExistingServer();
+
+                setTimeout(function () {
+
+                    mock.verify();
+
+                    done();
+
+                }, 50);
+
+            });
+
+        });
+
+    });
+
+
     describe('Special Paths', function () {
 
         describe('HEAD /__kill', function () {

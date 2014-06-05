@@ -1,7 +1,9 @@
 todo:
-- update dependencies (express)
+- bump -m
 
 done:
+- write test of killExistingServer
+- update dependencies (express)
 - update dependencies (liftoff)
 - npm module badge
 - dependency badge
