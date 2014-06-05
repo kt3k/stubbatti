@@ -295,6 +295,13 @@ describe('Stubbatti', function () {
 
         });
 
+
+        it('does nothing without an error when the server doesn\'t exist', function () {
+
+            stubbatti.killExistingServer();
+
+        });
+
     });
 
 
