@@ -102,13 +102,13 @@ Available methods are `get`, `post`, `head`, `options`, `put`, `delete`.
 Followings are valid notations in `.stubbatti.js`.
 
 ```js
-get('/foo', '3');
-post('/bar', '6');
-head('/baz', '15');
-options('/spam', '21');
-put('/ham', '28');
-global.delete('/egg', '36');
-trace('/egg', '45');
+get('/foo', 'GET response');
+post('/foo', 'POST response');
+head('/foo', ''); // HEAD response cannot have a response body.
+options('/foo', 'OPTIONS response');
+put('/foo', 'PUT response');
+global.delete('/foo', 'DELETE response');
+trace('/foo', 'TRACE response');
 ```
 
 **Setting port**
@@ -123,7 +123,7 @@ The default port number of stubbatti is 28987.
 
 **Syntax and semantics**
 
-The syntax and semantics of `.stubbatti.js` is basically same as `node.js` except some addition of global methods.
+The syntax and semantics of `.stubbatti.js` is basically same as `node.js` except some addition of global methods above.
 
 ## Command Line Options
 
@@ -135,13 +135,13 @@ stubbatti --config my_stub_settings.js
 
 With `--kill` option, you can kill the server. With this option, you can set your test script like following:
 
-```
-stubbatti & # launch a stub server
+```bash
+stubbatti & # launches a stub server
 
 # run unit test using the stub http server
 ...
 
-stubbatti --kill # kill the stub server
+stubbatti --kill # kills the stub server
 ```
 
 ## Special Paths
