@@ -170,3 +170,6 @@ This command is a thin wrapper of `express` and focusing on stubbing an http ser
 
 The difference of stubbatti from the above tools is that it's just a CLI stub server and can be used with any language through hooks in a shell script.
 And it needs only one setting file `.stubbatti.js` with the simple language.
+
+# Release History
+- 2014-06-05   v1.1.0   Initial release.
