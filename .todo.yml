@@ -1,7 +1,8 @@
 todo:
-- bump -m
+- create --help option
 
 done:
+- bump -m
 - write test of killExistingServer
 - update dependencies (express)
 - update dependencies (liftoff)
