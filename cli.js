@@ -37,6 +37,7 @@ global.port = function (port) {
 // set up liftoff params
 
 var cli = new Liftoff({
+
     name: 'stubbatti',
     moduleName: 'stubbatti',
     configName: '{,.}stubbatti',
@@ -44,6 +45,7 @@ var cli = new Liftoff({
         '.js': null
     },
     processTitle: 'stubbatti',
+
 });
 
 
@@ -52,6 +54,13 @@ var cli = new Liftoff({
 var main = function (env) {
 
     console.log('Stubbatti server version %s.', Stubbatti.version);
+
+    // If `-h` or `--help` option is specified then it shows the help messages and exits.
+    if (argv.help || argv.h) {
+        showHelp();
+
+        return;
+    }
 
     if (!env.configPath) {
         console.log('Error: `stubbatti` file not found.');
@@ -65,7 +74,7 @@ var main = function (env) {
     // load user defined stubbatti file
     require(env.configPath);
 
-    // if `--kill` option is specified then don't launch a stub server but kill the existing sevrer.
+    // If `--kill` option is specified then it doesn't launch a stub server but kills the existing sevrer.
     if (argv.kill) {
         stubbatti.killExistingServer();
 
@@ -76,8 +85,25 @@ var main = function (env) {
     stubbatti.start();
 };
 
+var showHelp = function () {
+    console.log('Usage:');
+    console.log('    stubbatti                          Start the stub server');
+    console.log('    stubbatti [--config filename]      Start the stub server with the specified config file');
+    console.log('    stubbatti --kill                   Kill the existing stub server');
+    console.log('    stubbatti -h | --help              Show help message');
+    console.log('[.stubbatti.js] file tutorial:');
+    console.log('    get("/hello", "Hello, world!");                           Register `Hello, world!` response to the path `/hello`');
+    console.log('    get("/delay", "delayed response", {delay: 1000});         Register 1000 milliseconds delayed response');
+    console.log('    get("/json", "{}", {contentType: "application/json"});    Register a response with the content-type application/json');
+    console.log('    get("/402", "Payment Required", {status: 402});           Register a response with the status code 402');
+    console.log('    get("/custom", "custom", {headers: {"Any": "Header"}});   Register a response with custom headers');
+    console.log('    post("/post", "POST response");                           Register a POST response');
+    console.log('    port(10080);                                              Set the stub server\'s port to 10080');
+};
 
 cli.launch({
+
     cwd: argv.cwd,
     configPath: argv.config
+
 }, main);
