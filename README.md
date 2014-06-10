@@ -1,4 +1,4 @@
-# Stubbatti v1.1.0
+# Stubbatti v1.2.0
 
 [![Build Status](https://img.shields.io/travis/kt3k/stubbatti.svg?style=flat)](https://travis-ci.org/kt3k/stubbatti)
 [![Coverage Status](https://img.shields.io/coveralls/kt3k/stubbatti.svg?style=flat)](https://coveralls.io/r/kt3k/stubbatti?branch=master)
@@ -156,7 +156,7 @@ MIT
 
 This command is a thin wrapper of `express` and focusing on stubbing an http server on test environments. This cli should be useful when you write the unit test of an http client or a web api client.
 
-# [API documentation](http://kt3k.github.io/stubbatti/doc/v1.1.0/)
+# [API documentation](http://kt3k.github.io/stubbatti/doc/v1.2.0/)
 
 # Similar tools
 
