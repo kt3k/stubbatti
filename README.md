@@ -172,4 +172,5 @@ The difference of stubbatti from the above tools is that it's just a CLI stub se
 And it needs only one setting file `.stubbatti.js` with the simple language.
 
 # Release History
+- 2014-06-10   v1.2.0   Added `--help` option.
 - 2014-06-05   v1.1.0   Initial release.
