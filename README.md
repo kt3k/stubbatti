@@ -146,7 +146,7 @@ stubbatti --kill # kills the stub server
 
 ## Special Paths
 
-A `HEAD` request to the path `/__kill` has the special meaning, which is used for killing the server process. So you shouldn't write `head('__kill', ...);` in `.stubbatti.js`.
+A `HEAD` request to the path `/__kill` has the special meaning, which is used for killing the server process. So you cannot write `head('__kill', ...);` in `.stubbatti.js`.
 
 # LICENSE
 
