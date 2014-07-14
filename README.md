@@ -9,6 +9,8 @@
 
 > A command line stub http server with the special DSL.
 
+**Note:** `stubbatti` is pronunced like **/stəˈbati/**.
+
 # Install
 
 - Install `node.js` ( >= 0.9 ).
